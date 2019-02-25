@@ -10,7 +10,7 @@ class Prueba extends REST_Controller {
 
   public function __construct(){
 
-    header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Methods: GET, POST");
     header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding");
     header("Access-Control-Allow-Origin: *");
 
@@ -22,9 +22,24 @@ class Prueba extends REST_Controller {
 
 
 
-  public function index(){
+  public function index_get(){
 
-    echo "Hola Mundo";
+    $this->response('Hola mundo!');
+
+  }
+
+  public function index_post(){
+
+    $data = $this->post();
+
+    // $message = 'Hola ' . $data['user'];
+
+    $respuesta = array(
+      'mensaje' => 'Hola ' . $data['user']
+    );
+
+    $this->response($respuesta);
+    return;
 
   }
 
